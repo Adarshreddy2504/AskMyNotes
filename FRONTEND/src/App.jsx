@@ -25,7 +25,7 @@ function App() {
     try {
       // Send question to deployed ML model
       const response = await fetch(
-        "http://127.0.0.1:8000/predict",
+        "https://backend-model-a20k.onrender.com/predict",
         {
           method: "POST",
 
