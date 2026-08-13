@@ -1,0 +1,28 @@
+services:
+
+  backend:
+    build:
+      context: ./BACKEND
+    container_name: askmynotes-backend
+    ports:
+      - "8000:8000"
+    environment:
+      MODEL_URL: http://model:7860
+    depends_on:
+      - model
+
+  model:
+    build:
+      context: ./MODEL
+    container_name: askmynotes-model
+    ports:
+      - "7860:7860"
+
+  frontend:
+    build:
+      context: ./FRONTEND
+    container_name: askmynotes-frontend
+    ports:
+      - "5173:80"
+    depends_on:
+      - backend

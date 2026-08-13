@@ -25,7 +25,7 @@ function App() {
     try {
       // Send question to deployed ML model
       const response = await fetch(
-        "https://backend-model-a20k.onrender.com/predict",
+        "http://localhost:8000/ask",
         {
           method: "POST",
 
@@ -42,8 +42,8 @@ function App() {
       // Check for HTTP errors
       if (!response.ok) {
         throw new Error(
-          `Model API returned status ${response.status}`
-        );
+          `Backend returned status ${response.status}`
+      );
       }
 
       // Convert response to JSON
@@ -52,12 +52,12 @@ function App() {
       console.log("Model response:", data);
 
       // Your API returns predicted_category
-      setAnswer(data.predicted_category);
+      setAnswer(data.answer);
     } catch (err) {
       console.error("Error:", err);
 
       setError(
-        "Unable to connect to the model. Please try again."
+        "Unable to connect to the backend. Please try again."
       );
     } finally {
       // Stop loading
