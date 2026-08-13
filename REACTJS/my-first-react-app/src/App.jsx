@@ -1,5 +1,9 @@
 import Student from "./components/student";
 import DOMTimer from "./components/domtimer";
+import Dashboard from "./components/dashboard";
+import { createContext } from "react";
+
+export const UserContext=createContext();
 
 function App() {
 
@@ -37,7 +41,10 @@ function App() {
   ]
 
   return (
-    <div>
+    <div className="item">
+      <UserContext.Provider value="Adarsh">
+        <Dashboard />
+      </UserContext.Provider>
       <h1>College Portal</h1>
       <Student students={students}/>
       <DOMTimer />
