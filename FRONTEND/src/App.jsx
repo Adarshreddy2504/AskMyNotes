@@ -10,43 +10,57 @@ function App() {
   const askQuestion = async () => {
     const cleanedQuestion = question.trim();
 
+    // Check if question is empty
     if (!cleanedQuestion) {
       setError("Please enter a question.");
       setAnswer("");
       return;
     }
 
+    // Start loading
     setLoading(true);
     setError("");
     setAnswer("");
 
     try {
-      const response = await fetch("http://localhost:8000/ask", {
-        method: "POST",
+      // Send question to deployed ML model
+      const response = await fetch(
+        "http://127.0.0.1:8000/predict",
+        {
+          method: "POST",
 
-        headers: {
-          "Content-Type": "application/json",
-        },
+          headers: {
+            "Content-Type": "application/json",
+          },
 
-        body: JSON.stringify({
-          question: cleanedQuestion,
-        }),
-      });
+          body: JSON.stringify({
+            question: cleanedQuestion,
+          }),
+        }
+      );
 
+      // Check for HTTP errors
       if (!response.ok) {
-        throw new Error(`Backend returned status ${response.status}`);
+        throw new Error(
+          `Model API returned status ${response.status}`
+        );
       }
 
+      // Convert response to JSON
       const data = await response.json();
 
-      setAnswer(data.answer);
+      console.log("Model response:", data);
+
+      // Your API returns predicted_category
+      setAnswer(data.predicted_category);
     } catch (err) {
-      console.error(err);
+      console.error("Error:", err);
 
       setError(
-        "Unable to connect to the backend. Check whether the FastAPI container is running."
+        "Unable to connect to the model. Please try again."
       );
     } finally {
+      // Stop loading
       setLoading(false);
     }
   };
@@ -56,27 +70,41 @@ function App() {
       <section className="card">
         <h1>Ask My Notes</h1>
 
-        <p>Enter a question and send it to the FastAPI backend.</p>
+        <p>
+          Enter a question and let the ML model classify it.
+        </p>
 
-        <label htmlFor="question">Your question</label>
+        <label htmlFor="question">
+          Your question
+        </label>
 
         <textarea
           id="question"
           value={question}
-          onChange={(event) => setQuestion(event.target.value)}
+          onChange={(event) =>
+            setQuestion(event.target.value)
+          }
           placeholder="For example: What is Docker?"
           rows="5"
         />
 
-        <button onClick={askQuestion} disabled={loading}>
-          {loading ? "Sending..." : "Ask Question"}
+        <button
+          onClick={askQuestion}
+          disabled={loading}
+        >
+          {loading ? "Predicting..." : "Ask Question"}
         </button>
 
-        {error && <div className="error">{error}</div>}
+        {error && (
+          <div className="error">
+            {error}
+          </div>
+        )}
 
         {answer && (
           <div className="answer">
-            <h2>Backend response</h2>
+            <h2>Predicted Category</h2>
+
             <p>{answer}</p>
           </div>
         )}
