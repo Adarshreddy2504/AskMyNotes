@@ -1,163 +1,395 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-body {
-  font-family: "Inter", "Segoe UI", Arial, sans-serif;
-  background: #f5f7fb;
-  color: #1f2937;
-}
-
-
 /* =========================
-   PAGE
+   Page
 ========================= */
 
 .page {
   min-height: 100vh;
-
   display: flex;
   justify-content: center;
   align-items: center;
 
-  padding: 30px 20px;
+  padding: 40px 20px;
 
-  background:
-    radial-gradient(
-      circle at top left,
-      #eee9ff 0%,
-      transparent 35%
-    ),
-    #f5f7fb;
+  background: linear-gradient(
+    135deg,
+    #f8fafc,
+    #eef6ff
+  );
+
+  font-family:
+    Inter,
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
+
+  color: #1e293b;
 }
 
 
 /* =========================
-   MAIN CARD
+   Main Card
 ========================= */
 
 .card {
   width: 100%;
-  max-width: 700px;
+  max-width: 720px;
 
-  padding: 40px;
+  padding: 45px;
 
-  background: #ffffff;
+  background: rgba(255, 255, 255, 0.94);
 
-  border: 1px solid #e5e7eb;
+  border: 1px solid #e2e8f0;
 
   border-radius: 18px;
 
   box-shadow:
-    0 10px 30px rgba(0, 0, 0, 0.07);
+    0 15px 40px rgba(15, 23, 42, 0.08);
 }
 
 
 /* =========================
-   HEADING
+   Header
 ========================= */
 
-.card h1 {
+.header {
   text-align: center;
 
-  margin-bottom: 10px;
+  margin-bottom: 40px;
+}
+
+.header h1 {
+  margin: 0;
 
   font-size: 38px;
-  font-weight: 750;
+  font-weight: 700;
 
-  color: #4f46e5;
+  letter-spacing: -1px;
+
+  color: #1e3a5f;
 }
 
-.card > p {
-  text-align: center;
+.header p {
+  margin-top: 12px;
 
-  margin-bottom: 30px;
-
-  color: #6b7280;
+  color: #64748b;
 
   font-size: 15px;
-  line-height: 1.6;
 }
 
 
 /* =========================
-   LABEL
+   Sections
 ========================= */
 
-.card label {
+.upload-section,
+.question-section {
+  margin-top: 20px;
+}
+
+.upload-section h2,
+.question-section label {
   display: block;
 
-  margin-bottom: 9px;
+  font-size: 16px;
+  font-weight: 600;
 
-  color: #374151;
+  color: #334155;
+}
+
+.upload-description {
+  margin-top: 7px;
 
   font-size: 14px;
+
+  color: #94a3b8;
+}
+
+
+/* =========================
+   Upload Area
+========================= */
+
+.upload-area {
+  margin-top: 18px;
+
+  min-height: 130px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 20px;
+
+  border: 2px dashed #cbd5e1;
+
+  border-radius: 12px;
+
+  background: #f8fafc;
+
+  transition: 0.2s ease;
+}
+
+.upload-area:hover {
+  border-color: #7da7d9;
+
+  background: #f4f8fc;
+}
+
+
+/* =========================
+   Choose Button
+========================= */
+
+.choose-button {
+  padding: 11px 24px;
+
+  border: none;
+  border-radius: 8px;
+
+  background: #6f9fd2;
+
+  color: white;
+
+  font-size: 14px;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition: 0.2s ease;
+}
+
+.choose-button:hover {
+  background: #5c8fc8;
+}
+
+
+/* =========================
+   Selected File
+========================= */
+
+.file-selected {
+  width: 100%;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 20px;
+}
+
+.file-info {
+  display: flex;
+
+  align-items: center;
+
+  gap: 14px;
+
+  min-width: 0;
+}
+
+.file-info > div {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 4px;
+
+  min-width: 0;
+}
+
+.file-info strong {
+  font-size: 14px;
+
+  color: #334155;
+
+  overflow: hidden;
+
+  text-overflow: ellipsis;
+
+  white-space: nowrap;
+}
+
+.file-info span:not(.pdf-icon) {
+  font-size: 12px;
+
+  color: #94a3b8;
+}
+
+
+/* PDF icon */
+
+.pdf-icon {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  width: 42px;
+  height: 42px;
+
+  border-radius: 8px;
+
+  background: #e8f1fb;
+
+  color: #4d7fac;
+
+  font-size: 11px;
+
+  font-weight: 700;
+}
+
+
+/* Remove */
+
+.remove-button {
+  border: none;
+
+  background: transparent;
+
+  color: #94a3b8;
+
+  cursor: pointer;
+
+  font-size: 13px;
+}
+
+.remove-button:hover {
+  color: #dc6464;
+}
+
+
+/* =========================
+   Upload Button
+========================= */
+
+.upload-button {
+  margin-top: 15px;
+
+  width: 100%;
+
+  padding: 11px;
+
+  border: none;
+
+  border-radius: 8px;
+
+  background: #7fa8d3;
+
+  color: white;
+
+  font-weight: 600;
+
+  cursor: pointer;
+}
+
+.upload-button:hover {
+  background: #6d99c7;
+}
+
+.upload-button:disabled {
+  opacity: 0.6;
+
+  cursor: not-allowed;
+}
+
+
+/* =========================
+   Divider
+========================= */
+
+.divider {
+  display: flex;
+
+  align-items: center;
+
+  gap: 15px;
+
+  margin: 35px 0;
+}
+
+.divider::before,
+.divider::after {
+  content: "";
+
+  flex: 1;
+
+  height: 1px;
+
+  background: #e2e8f0;
+}
+
+.divider span {
+  font-size: 12px;
+
+  color: #94a3b8;
+
   font-weight: 600;
 }
 
 
 /* =========================
-   TEXTAREA
+   Textarea
 ========================= */
 
-.card textarea {
+.question-section textarea {
   width: 100%;
 
-  min-height: 140px;
+  box-sizing: border-box;
 
-  padding: 15px;
+  margin-top: 10px;
+
+  padding: 14px;
 
   resize: vertical;
 
-  border: 1px solid #d1d5db;
+  border: 1px solid #cbd5e1;
 
   border-radius: 10px;
 
   outline: none;
 
-  background: #fafafa;
-
-  color: #1f2937;
-
-  font-size: 15px;
-
-  line-height: 1.6;
-
-  transition: 0.2s;
-}
-
-.card textarea::placeholder {
-  color: #9ca3af;
-}
-
-.card textarea:focus {
   background: #ffffff;
 
-  border-color: #6366f1;
+  color: #334155;
+
+  font-family: inherit;
+
+  font-size: 14px;
+
+  transition: 0.2s ease;
+}
+
+.question-section textarea:focus {
+  border-color: #7fa8d3;
 
   box-shadow:
-    0 0 0 3px rgba(99, 102, 241, 0.1);
+    0 0 0 3px rgba(127, 168, 211, 0.12);
+}
+
+.question-section textarea::placeholder {
+  color: #a8b4c2;
 }
 
 
 /* =========================
-   BUTTON
+   Ask Button
 ========================= */
 
-.card button {
-  width: 100%;
+.ask-button {
+  display: block;
 
-  margin-top: 15px;
+  margin: 18px auto 0;
 
-  padding: 13px 18px;
+  padding: 11px 35px;
 
   border: none;
 
-  border-radius: 9px;
+  border-radius: 8px;
 
-  background: #4f46e5;
+  background: #6f9fd2;
 
   color: white;
 
@@ -167,20 +399,14 @@ body {
 
   cursor: pointer;
 
-  transition: 0.2s;
+  transition: 0.2s ease;
 }
 
-.card button:hover:not(:disabled) {
-  background: #4338ca;
-
-  transform: translateY(-1px);
+.ask-button:hover {
+  background: #5c8fc8;
 }
 
-.card button:active:not(:disabled) {
-  transform: translateY(0);
-}
-
-.card button:disabled {
+.ask-button:disabled {
   opacity: 0.6;
 
   cursor: not-allowed;
@@ -188,100 +414,87 @@ body {
 
 
 /* =========================
-   ERROR
+   Error
 ========================= */
 
 .error {
-  margin-top: 15px;
+  margin-top: 20px;
 
-  padding: 12px 14px;
+  padding: 12px 15px;
 
-  border-radius: 9px;
+  border-radius: 8px;
 
-  border: 1px solid #fecaca;
+  background: #fff1f2;
 
-  background: #fef2f2;
+  border: 1px solid #fecdd3;
 
-  color: #dc2626;
+  color: #be123c;
 
   font-size: 14px;
 }
 
 
 /* =========================
-   ANSWER
+   Answer
 ========================= */
 
-.answer {
-  margin-top: 22px;
-
-  padding: 20px;
-
-  border: 1px solid #c7d2fe;
-
-  border-radius: 12px;
-
-  background: #eef2ff;
+.answer-section {
+  margin-top: 30px;
 }
 
-.answer h2 {
-  margin-bottom: 10px;
+.answer-section h2 {
+  font-size: 16px;
 
-  color: #4338ca;
+  font-weight: 600;
+
+  color: #334155;
+}
+
+.answer-box {
+  margin-top: 10px;
+
+  padding: 18px;
+
+  border-radius: 10px;
+
+  background: #f1f7fc;
+
+  border: 1px solid #dceaf6;
+
+  color: #334155;
 
   font-size: 15px;
 
-  font-weight: 600;
-}
-
-.answer p {
-  display: inline-block;
-
-  padding: 8px 14px;
-
-  border-radius: 7px;
-
-  background: #ffffff;
-
-  border: 1px solid #c7d2fe;
-
-  color: #3730a3;
-
-  font-size: 18px;
-
-  font-weight: 700;
+  line-height: 1.6;
 }
 
 
 /* =========================
-   MOBILE
+   Mobile
 ========================= */
 
 @media (max-width: 600px) {
-
   .page {
     padding: 20px 12px;
   }
 
   .card {
-    padding: 25px 18px;
+    padding: 28px 20px;
 
     border-radius: 14px;
   }
 
-  .card h1 {
-    font-size: 31px;
+  .header h1 {
+    font-size: 30px;
   }
 
-  .card > p {
-    font-size: 13px;
+  .file-selected {
+    align-items: flex-start;
+
+    flex-direction: column;
   }
 
-  .card textarea {
-    min-height: 120px;
-  }
-
-  .answer p {
-    font-size: 16px;
+  .remove-button {
+    align-self: flex-end;
   }
 }
